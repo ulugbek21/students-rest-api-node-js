@@ -32,6 +32,7 @@ app.put("/students/:index", (req, res) => {
     var index = req.params.index
     if (students[index] !== undefined) {
         students[index] = req.body
+        res.sendStatus(200)
     } else {
         res.status(404)
         res.json({ "message": "Not found" })
@@ -42,6 +43,7 @@ app.patch("/students/:index/address", (req, res) => {
     var index = req.params.index
     if (students[index] !== undefined && students[index].hasOwnProperty("Address")) {
         students[index]["Address"] = req.body
+        res.sendStatus(200)
     } else {
         res.status(404)
         res.json({ "message": "Not found" })
@@ -52,6 +54,7 @@ app.delete("/students/:index", (req, res) => {
     var index = req.params.index
     if (students[index] !== undefined) {
         students.splice(index, 1)
+        res.sendStatus(200)
     } else {
         res.status(404)
         res.json({ "message": "Not found" })
