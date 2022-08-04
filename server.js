@@ -32,6 +32,7 @@ app.put("/students/:index", (req, res) => {
     var index = req.params.index
     if (students[index] !== undefined) {
         students[index] = req.body
+        saveInJSONFile(students, "students.json")
         res.sendStatus(200)
     } else {
         res.status(404)
@@ -41,8 +42,9 @@ app.put("/students/:index", (req, res) => {
 
 app.patch("/students/:index/address", (req, res) => {
     var index = req.params.index
-    if (students[index] !== undefined && students[index].hasOwnProperty("Address")) {
-        students[index]["Address"] = req.body
+    if (students[index] !== undefined && students[index].hasOwnProperty("address")) {
+        students[index]["address"] = req.body
+        saveInJSONFile(students, "students.json")
         res.sendStatus(200)
     } else {
         res.status(404)
@@ -54,6 +56,7 @@ app.delete("/students/:index", (req, res) => {
     var index = req.params.index
     if (students[index] !== undefined) {
         students.splice(index, 1)
+        saveInJSONFile(students, "students.json")
         res.sendStatus(200)
     } else {
         res.status(404)
